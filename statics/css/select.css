@@ -1,0 +1,8 @@
+body {
+    font-family: sans-serif;
+    background-image: url(images/bg.png);
+    background-attachment: fixed;
+    background-size: auto;
+    color: white;
+    margin-top: 60px;
+}

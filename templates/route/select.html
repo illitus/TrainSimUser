@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {%load staticfiles%}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/select.css' %}">
+    <title>TrainSim Passenger</title>
+  </head>
+  <body>
+    <div class="container">
+        <h3 style="text-align:center">TRAINSIM PASSENGER</h3>
+        <form action='{%url 'schedule'%}' method="post">
+          {%csrf_token%}
+          <label for="source">Enter Source</label>
+            <select id="source" class="form-control" name="source">
+              <option selected>Choose station</option>
+              {%for each in statlist%}
+              <option>{{each}}</option> {%endfor%}
+            </select>
+            <label for="dest">Enter Destination</label>
+            <select id="dest" class="form-control" name="dest">
+              <option selected>Choose station</option>
+              {%for each in statlist%}
+              <option>{{each}}</option> {%endfor%}
+            </select><br>
+            <button type="submit" style="btn btn-primary">Submit</button>
+            <br>
+            <hr>
+            <br>
+            {%for each in trains%}
+            <br>
+            <h4>{{each.0}}                      {{each.1}} - {{each.2}}</h4>
+            <h5>Will reach {{each.3}} at {{each.4}}</h5>
+            <p>CURRENT STATUS: ON-TIME</p>
+            <p style='color:white'><a href="{{each.0}}" target="_blank">See complete schedule</a></p>
+            <br> <hr>
+            {%endfor%}
+
+      </form>
+    </div>
+</body>
+
+</html>
